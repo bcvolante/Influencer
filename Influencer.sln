@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfluencerAPI", "InfuencerAPI\InfluencerAPI.csproj", "{72CEC4D0-A7C7-412F-BD35-4CBD8885A44F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{5D422C57-24E3-4229-ADAF-254ADA645703}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72CEC4D0-A7C7-412F-BD35-4CBD8885A44F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72CEC4D0-A7C7-412F-BD35-4CBD8885A44F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72CEC4D0-A7C7-412F-BD35-4CBD8885A44F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72CEC4D0-A7C7-412F-BD35-4CBD8885A44F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D422C57-24E3-4229-ADAF-254ADA645703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D422C57-24E3-4229-ADAF-254ADA645703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D422C57-24E3-4229-ADAF-254ADA645703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D422C57-24E3-4229-ADAF-254ADA645703}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3D858E1E-72F2-4694-BBB5-2052DFBBD047}
+	EndGlobalSection
+EndGlobal
