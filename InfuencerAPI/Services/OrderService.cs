@@ -10,6 +10,7 @@ using InfluencerAPI.Models.Stripe;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Hosting.Server;
 using Stripe.Checkout;
+using InfuencerAPI.Models.UsersDTO;
 
 namespace InfluencerAPI.Services
 {
@@ -35,6 +36,7 @@ namespace InfluencerAPI.Services
                     Id = newId,
                     UserId = _CreateOrderRequest.UserId,
                     InfluencerId = _CreateOrderRequest.InfluencerId,
+                    IsApproved = false,
                     Status = "Order Received"
                 };
 
@@ -289,6 +291,44 @@ namespace InfluencerAPI.Services
             }
             return response;
         }
+        public async Task<MainResponse> GetOrderByInfluencerId(Guid id)
+        {
+            var response = new MainResponse();
+            try
+            {
+                response.Content =
+                    await (
+                    from b in dbContext.Order
+					join c in dbContext.Influencer on b.InfluencerId equals c.Id
+					join bc in dbContext.Users on b.UserId equals bc.Id
+					join v in dbContext.Settings on c.IndustryId equals v.Id
+                    select new
+                    {
+                        b.Id,
+                        UserId = b.InfluencerId,
+                        InfluencerId = b.UserId,
+                        b.Status,
+                        b.IsActive,
+                        b.IsApproved,
+                        b.DateCreated,
+                        bc.Name,
+                        bc.ImagePath,
+                        bc.IndustryId,
+                        Industry = v.Name
+                    })
+                    .Where(b => b.UserId == id)
+                    .OrderByDescending(b => b.DateCreated)
+                    .ToListAsync();
+
+                response.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = ex.Message;
+                response.IsSuccess = false;
+            }
+            return response;
+        }
         public async Task<MainResponse> CheckoutOrderById(Guid id)
         {
             var response = new MainResponse();
@@ -376,7 +416,11 @@ namespace InfluencerAPI.Services
                         b.InfluencerId,
                         c.Date,
                         c.TimeId,
-                        b.DateCreated
+                        b.DateCreated,
+                        b.IsActive,
+                        b.IsApproved,
+                        b.Status,
+                        b.Remarks
                     })
                     .Where(b => b.Id == id)
                     .OrderByDescending(b => b.DateCreated)
@@ -389,6 +433,40 @@ namespace InfluencerAPI.Services
                 response.ErrorMessage = ex.Message;
                 response.IsSuccess = false;
             }
+            return response;
+        }
+
+        public async Task<MainResponse> UpdateOrder(UpdateOrderRequest updateOrderRequest)
+        {
+            var response = new MainResponse();
+            try
+            {
+                var Order = dbContext.Order.Where(b =>
+                    b.Id == updateOrderRequest.Id && b.InfluencerId == updateOrderRequest.InfluencerId).FirstOrDefault();
+
+                if (Order != null)
+                {
+                    Order.IsApproved = updateOrderRequest.IsApproved;
+                    Order.Status = updateOrderRequest.Status;
+                    Order.Remarks = updateOrderRequest.Remarks;
+                    await dbContext.SaveChangesAsync();
+
+                    response.IsSuccess = true;
+                    response.Content = "Record successfully updated.";
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Content = "Record update failed.";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = ex.Message;
+                response.IsSuccess = false;
+            }
+
             return response;
         }
     }

@@ -15,6 +15,7 @@ namespace InfuencerAPI.Models.Users
         public Guid? IndustryId { get; set; }
         public int Size { get; set; }
         public DateTime DateCreated { get; set; }
+        public string? Address { get; set; }
 
         public Settings Type { get; set; }
         public Settings Industry { get; set; }

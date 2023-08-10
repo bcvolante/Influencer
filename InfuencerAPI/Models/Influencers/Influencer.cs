@@ -13,6 +13,7 @@ namespace InfuencerAPI.Models.Influencers
         public Guid? GenderId { get; set; }
         public bool IsActive { get; set; }
         public DateTime DateCreated { get; set; }
+        public string Email { get; set; }
 
         public Settings Nationality { get; set; }
         public Settings Industry { get; set; }

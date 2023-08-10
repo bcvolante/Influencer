@@ -89,7 +89,8 @@ namespace InfuencerAPI.Services
                         ImagePath = createUserRequest.ImagePath,
                         Number = createUserRequest.Number,
                         IndustryId = createUserRequest.IndustryId,
-                        Size = createUserRequest.Size
+                        Size = createUserRequest.Size,
+                        Address = createUserRequest.Address
                     };
 
                     await dbContext.Users.AddAsync(_Users);
@@ -99,7 +100,8 @@ namespace InfuencerAPI.Services
                     {
                         UserId = _Users.Id,
                         UserName = _Users.Email,
-                        Password = createUserRequest.Password
+                        Password = createUserRequest.Password,
+                        UserTypeId = new Guid("E49B53A7-374B-4F88-8200-6463AA3A5F1A")
                     };
                     //var _CreateLoginRequest = dbContext.Users
                     //    .Where(b => b.Email == createUserRequest.Email)
@@ -164,6 +166,7 @@ namespace InfuencerAPI.Services
                     User.Number = updateUserRequest.Number;
                     User.IndustryId = updateUserRequest.IndustryId;
                     User.Size = updateUserRequest.Size;
+                    User.Address = updateUserRequest.Address;
                     await dbContext.SaveChangesAsync();
 
                     response.IsSuccess = true;

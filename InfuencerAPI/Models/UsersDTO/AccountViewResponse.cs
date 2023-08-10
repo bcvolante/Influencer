@@ -1,9 +1,8 @@
-﻿using InfuencerAPI.Models.Users;
-
-namespace InfluencerAPI.Models.UsersDTO
+﻿namespace InfluencerAPI.Models.UsersDTO
 {
-    public class LoginViewResponse
+    public class AccountViewResponse
     {
+        public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
@@ -19,8 +18,6 @@ namespace InfluencerAPI.Models.UsersDTO
         public string ImagePath { get; set; }
         public Guid? IndustryId { get; set; }
         public int Size { get; set; }
-        public Guid? InfluencerId { get; set; }
-        public Guid? UserTypeId { get; set; }
 
         public bool IsSuccess { get; set; }
         public string? ErrorMessage { get; set; }

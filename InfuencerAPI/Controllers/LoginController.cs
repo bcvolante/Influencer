@@ -50,7 +50,9 @@ namespace InfuencerAPI.Controllers
                     new Claim("nr", _LoginViewResponse.Number),
                     new Claim("mp", _LoginViewResponse.ImagePath),
                     new Claim("ii", _LoginViewResponse.IndustryId.ToString()),
-                    new Claim("sz", _LoginViewResponse.Size.ToString())
+                    new Claim("sz", _LoginViewResponse.Size.ToString()),
+                    new Claim("if", _LoginViewResponse.InfluencerId.ToString()),
+                    new Claim("ut", _LoginViewResponse.UserTypeId.ToString())
             };
             var tokenDescriptor = new SecurityTokenDescriptor
             {

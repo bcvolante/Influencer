@@ -86,6 +86,7 @@ namespace InfluencerAPI.Services
                         Nationality = c.Name,
                         Industry = v.Name,
                         Gender = k.Name
+
                     })
                     .Where(bv => bv.Id == id)
                     .FirstOrDefaultAsync();

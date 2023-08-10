@@ -98,7 +98,21 @@ namespace InfluencerAPI.Controllers
                 return ErrorResponse.ReturnErrorResponse(ex.Message);
             }
         }
-        
+        // GET RECORD BY ID
+        [HttpGet("GetOrderByInfluencerId/{id:guid}")]
+        public async Task<IActionResult> GetOrderByInfluencerId([FromRoute] Guid id)
+        {
+            try
+            {
+                var response = await OrderService.GetOrderByInfluencerId(id);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return ErrorResponse.ReturnErrorResponse(ex.Message);
+            }
+        }
+
         // GET RECORD BY ID
         [HttpGet("CheckoutOrderById/{id:guid}")]
         public async Task<IActionResult> CheckoutOrderById([FromRoute] Guid id)
@@ -160,5 +174,19 @@ namespace InfluencerAPI.Controllers
             }
         }
 
+        [HttpPut("UpdateOrder")]
+        public async Task<IActionResult> UpdateOrder([FromBody] UpdateOrderRequest updateOrderRequest)
+        {
+            try
+            {
+                var response = await OrderService.UpdateOrder(updateOrderRequest);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return ErrorResponse.ReturnErrorResponse(ex.Message);
+            }
+
+        }
     }
 }

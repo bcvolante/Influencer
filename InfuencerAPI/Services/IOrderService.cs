@@ -13,8 +13,10 @@ namespace InfluencerAPI.Services
         Task<MainResponse> CheckoutOrderById(Guid id);
         Task<MainResponse> GetUserById(Guid id);
 		Task<MainResponse> GetOrderById(Guid id);
+        Task<MainResponse> GetOrderByInfluencerId(Guid id);
         Task<MainResponse> ViewOrder(Guid id);
         Task<MainResponse> ViewOrderDetail(Guid id);
         Task<MainResponse> ViewOrderTarget(Guid id);
+        Task<MainResponse> UpdateOrder(UpdateOrderRequest updateOrderRequest);
     }
 }

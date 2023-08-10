@@ -4,6 +4,7 @@ using InfuencerAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfuencerAPI.Migrations
 {
     [DbContext(typeof(InfluencerDbContext))]
-    partial class InfluencerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230801100306_InitialCreateAzure")]
+    partial class InitialCreateAzure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,10 +36,6 @@ namespace InfuencerAPI.Migrations
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -328,10 +326,7 @@ namespace InfuencerAPI.Migrations
                     b.Property<bool>("IsApproved")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -396,9 +391,6 @@ namespace InfuencerAPI.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
-                    b.Property<Guid>("InfluencerId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -423,9 +415,6 @@ namespace InfuencerAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserTypeId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
@@ -438,9 +427,6 @@ namespace InfuencerAPI.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()

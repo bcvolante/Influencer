@@ -1,4 +1,6 @@
-﻿namespace InfuencerAPI.Models.OrdersDTO
+﻿using InfuencerAPI.Migrations;
+
+namespace InfuencerAPI.Models.OrdersDTO
 {
     public class UpdateOrderRequest
     {
@@ -8,5 +10,6 @@
         public bool IsActive { get; set; }
         public bool IsApproved { get; set; }
         public string Status { get; set; }
+        public string? Remarks { get; set; }
     }
 }

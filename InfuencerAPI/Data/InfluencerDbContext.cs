@@ -95,7 +95,7 @@ namespace InfuencerAPI.Data
                 .HasDefaultValue(true);
             modelBuilder.Entity<Orders>()
                 .Property(b => b.IsApproved)
-                .HasDefaultValue(true);
+                .HasDefaultValue(false);
             modelBuilder.Entity<Orders>()
                 .Property(b => b.Status)
                 .HasDefaultValue("Order Received");

@@ -69,7 +69,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-
 // Add services to the container.
 
 builder.Services.AddDbContext<InfluencerDbContext>(options =>
@@ -85,6 +84,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+//var url = $"http://0.0.0.0:{port}";
+//var target = Environment.GetEnvironmentVariable("TARGET") ?? "World";
 
 var app = builder.Build();
 
@@ -108,3 +111,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+//app.MapGet("/", () => $"Hello {target}!");
+
+//app.Run(url);
